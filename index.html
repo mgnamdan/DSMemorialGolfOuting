@@ -20,6 +20,7 @@
       <a href="#details">Details</a>
       <a href="#sponsor">Sponsor</a>
       <a href="#interest">Interest Form</a>
+      <a href="#flyer">Flyer</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -33,25 +34,25 @@
           Join family, friends, and supporters for a day of golf, dinner, and remembrance, with proceeds going to Game on Cancer.
         </p>
         <div class="hero-actions" aria-label="Primary actions">
-          <a class="button button-primary" href="https://forms.gle/iYVNZuiYm4oVigbL8" target="_blank" rel="noopener">Register now</a>
-          <a class="button button-secondary" href="#interest">Share interest</a>
+          <a class="button button-primary js-open-window" href="https://example.com/official-registration-form" target="_blank" rel="noopener" data-placeholder="true">Register now</a>
+          <a class="button button-secondary js-open-window" href="https://docs.google.com/forms/d/e/1FAIpQLSccVm4FfWT28nw3h-6kPOXrn7FxFn-EODT8Z2TMmPt2udVYOaw/viewform" target="_blank" rel="noopener">Join interest list</a>
         </div>
+        <aside class="event-card" aria-label="Event summary">
+          <div>
+            <span class="event-label">Date</span>
+            <strong>August 31, 2026</strong>
+          </div>
+          <div>
+            <span class="event-label">Start</span>
+            <strong>Shotgun start at 9:00 AM</strong>
+          </div>
+          <div>
+            <span class="event-label">Location</span>
+            <strong>TPC Michigan</strong>
+          </div>
+          <p>Detailed agenda to follow.</p>
+        </aside>
       </div>
-      <aside class="event-card" aria-label="Event summary">
-        <div>
-          <span class="event-label">Date</span>
-          <strong>August 31, 2026</strong>
-        </div>
-        <div>
-          <span class="event-label">Start</span>
-          <strong>Shotgun start at 9:00 AM</strong>
-        </div>
-        <div>
-          <span class="event-label">Location</span>
-          <strong>TPC Michigan</strong>
-        </div>
-        <p>Detailed agenda to follow.</p>
-      </aside>
     </section>
 
     <section class="section section-muted" id="details">
@@ -72,10 +73,13 @@
         <article class="info-panel">
           <h3>Payment</h3>
           <ul class="feature-list">
-            <li>Venmo: <strong>@Jeanne-Gugudis</strong></li>
-            <li>Proceeds go to <strong>Game on Cancer</strong></li>
+            <li>Venmo: <a class="text-link" href="https://venmo.com/u/Jeanne-Gugudis" target="_blank" rel="noopener">@Jeanne-Gugudis</a></li>
+            <li>Proceeds go to <a class="text-link" href="https://gameoncancer.com/" target="_blank" rel="noopener">Game on Cancer</a></li>
           </ul>
-          <a class="text-link" href="https://forms.gle/iYVNZuiYm4oVigbL8" target="_blank" rel="noopener">Open registration form</a>
+          <div class="qr-placeholder" aria-label="Venmo QR code placeholder">
+            <span>Venmo QR</span>
+            <small>Replace with payment QR code</small>
+          </div>
         </article>
       </div>
     </section>
@@ -111,7 +115,14 @@
         <p>
           Use the interest form to share contact information before officially signing up. It helps the fundraiser team follow up with details as the outing gets closer.
         </p>
-        <a class="button button-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSccVm4FfWT28nw3h-6kPOXrn7FxFn-EODT8Z2TMmPt2udVYOaw/viewform" target="_blank" rel="noopener">Open interest form</a>
+        <div class="copy-link-panel">
+          <span id="interestFormLink">https://docs.google.com/forms/d/e/1FAIpQLSccVm4FfWT28nw3h-6kPOXrn7FxFn-EODT8Z2TMmPt2udVYOaw/viewform</span>
+          <button class="button button-secondary" type="button" id="copyInterestLink">Copy link</button>
+        </div>
+        <div class="interest-actions">
+          <button class="button button-secondary" type="button" id="sponsorContactButton">Contact about sponsorship</button>
+        </div>
+        <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
       </div>
       <div class="form-frame" aria-label="Interest form preview">
         <iframe
@@ -123,19 +134,16 @@
       </div>
     </section>
 
-    <section class="section section-muted flyer-section" aria-labelledby="flyer-heading">
-      <div class="section-heading">
-        <p class="eyebrow">Original flyer</p>
-        <h2 id="flyer-heading">Keep the event flyer handy.</h2>
-      </div>
+    <section class="flyer-section" id="flyer" aria-labelledby="flyer-heading">
       <div class="flyer-layout">
-        <img src="assets/fundraiserFlyer.png" alt="Flyer for the Don Skidmore Memorial Golf Outing 2026 with registration, sponsorship, Venmo, and event details.">
-        <div class="flyer-notes">
-          <h3>Quick links</h3>
-          <a class="text-link" href="assets/fundraiserFlyer.png" download>Download flyer</a>
-          <a class="text-link" href="https://forms.gle/iYVNZuiYm4oVigbL8" target="_blank" rel="noopener">Registration form</a>
-          <a class="text-link" href="https://docs.google.com/forms/d/e/1FAIpQLSccVm4FfWT28nw3h-6kPOXrn7FxFn-EODT8Z2TMmPt2udVYOaw/viewform" target="_blank" rel="noopener">Interest form</a>
+        <div class="flyer-copy">
+          <p class="eyebrow">Original flyer</p>
+          <h2 id="flyer-heading">Keep the event flyer handy.</h2>
+          <p>Click the flyer to download a copy for sharing, printing, or sending to anyone who may want to attend.</p>
         </div>
+        <a class="flyer-download" href="assets/fundraiserFlyer.png" download aria-label="Download the Don Skidmore Memorial Golf Outing flyer">
+          <img src="assets/fundraiserFlyer.png" alt="Flyer for the Don Skidmore Memorial Golf Outing 2026 with registration, sponsorship, Venmo, and event details.">
+        </a>
       </div>
     </section>
 

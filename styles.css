@@ -103,19 +103,15 @@ img {
 }
 
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(280px, 400px);
-  align-items: center;
-  gap: clamp(28px, 6vw, 72px);
   min-height: calc(100vh - 73px);
   padding: clamp(54px, 9vw, 110px) clamp(18px, 5vw, 70px) clamp(44px, 7vw, 82px);
   background:
-    linear-gradient(90deg, rgba(248, 247, 241, 1) 0%, rgba(248, 247, 241, 0.96) 48%, rgba(248, 247, 241, 0.82) 100%),
-    url("assets/fundraiserFlyer.png") right 40% / min(43vw, 640px) auto no-repeat;
+    linear-gradient(90deg, rgba(248, 247, 241, 1) 0%, rgba(248, 247, 241, 0.96) 42%, rgba(248, 247, 241, 0.16) 72%, rgba(248, 247, 241, 0) 100%),
+    url("assets/fundraiserFlyer.png") right center / min(49vw, 720px) auto no-repeat;
 }
 
 .hero-content {
-  max-width: 760px;
+  max-width: 700px;
 }
 
 .eyebrow {
@@ -213,7 +209,6 @@ h3 {
 .event-card,
 .info-panel,
 .sponsor-card,
-.flyer-notes,
 .contact-form {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -224,6 +219,8 @@ h3 {
 .event-card {
   display: grid;
   gap: 18px;
+  max-width: 460px;
+  margin-top: 30px;
   padding: 24px;
   border-top: 5px solid var(--copper);
 }
@@ -289,6 +286,10 @@ h3 {
   color: var(--pine);
 }
 
+.feature-list a {
+  display: inline;
+}
+
 .text-link {
   color: var(--pine);
   font-weight: 800;
@@ -321,7 +322,7 @@ h3 {
 
 .sponsor-card p,
 .interest-copy p,
-.flyer-notes p {
+.flyer-copy p {
   margin: 0;
   color: var(--muted);
   line-height: 1.65;
@@ -339,6 +340,66 @@ h3 {
   gap: 22px;
 }
 
+.copy-link-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.copy-link-panel span {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.92rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.interest-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.copy-status {
+  min-height: 22px;
+  margin: -10px 0 0;
+  color: var(--fairway);
+  font-weight: 800;
+}
+
+.qr-placeholder {
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  width: min(100%, 230px);
+  aspect-ratio: 1;
+  border: 2px dashed rgba(16, 43, 13, 0.24);
+  border-radius: 8px;
+  color: var(--muted);
+  background:
+    linear-gradient(90deg, rgba(16, 43, 13, 0.05) 50%, transparent 50%) 0 0 / 22px 22px,
+    linear-gradient(rgba(16, 43, 13, 0.05) 50%, transparent 50%) 0 0 / 22px 22px,
+    rgba(255, 255, 255, 0.72);
+  text-align: center;
+}
+
+.qr-placeholder span {
+  color: var(--pine);
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.qr-placeholder small {
+  max-width: 150px;
+  line-height: 1.35;
+}
+
 .form-frame {
   min-height: 620px;
   overflow: hidden;
@@ -354,28 +415,54 @@ h3 {
   border: 0;
 }
 
-.flyer-layout {
-  display: grid;
-  grid-template-columns: minmax(240px, 420px) minmax(260px, 1fr);
-  gap: 28px;
-  align-items: start;
+.flyer-section {
+  background: var(--pine);
 }
 
-.flyer-layout img {
-  width: 100%;
+.flyer-section .eyebrow,
+.flyer-section h2 {
+  color: var(--white);
+}
+
+.flyer-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.78fr) minmax(320px, 1.22fr);
+  align-items: stretch;
+  min-height: min(840px, calc(100vh - 73px));
+}
+
+.flyer-copy {
+  display: grid;
+  align-content: center;
+  gap: 22px;
+  padding: clamp(56px, 9vw, 110px) clamp(18px, 5vw, 70px);
+}
+
+.flyer-copy p {
+  max-width: 520px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 1.08rem;
+}
+
+.flyer-download {
+  display: grid;
+  place-items: center;
+  padding: clamp(34px, 6vw, 72px);
+  background: var(--cream);
+}
+
+.flyer-download img {
+  width: min(100%, 620px);
   border: 1px solid var(--line);
   border-radius: 8px;
   box-shadow: var(--shadow);
+  transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
-.flyer-notes {
-  display: grid;
-  gap: 16px;
-  padding: 26px;
-}
-
-.flyer-notes .text-link {
-  display: block;
+.flyer-download:hover img,
+.flyer-download:focus-visible img {
+  transform: translateY(-2px);
+  box-shadow: 0 28px 70px rgba(16, 43, 13, 0.24);
 }
 
 .contact-section {
@@ -453,6 +540,7 @@ h3 {
   }
 
   .site-nav {
+    width: 100%;
     justify-content: flex-start;
   }
 
@@ -466,13 +554,17 @@ h3 {
 
   .hero {
     min-height: auto;
-    background:
-      linear-gradient(180deg, rgba(248, 247, 241, 0.97), rgba(248, 247, 241, 0.82)),
-      url("assets/fundraiserFlyer.png") center top / 100% auto no-repeat;
+    background: var(--cream);
   }
 
   .sponsor-card {
     min-height: auto;
+  }
+}
+
+@media (max-width: 1040px) {
+  .hero {
+    background: var(--cream);
   }
 }
 
@@ -481,16 +573,33 @@ h3 {
     align-items: flex-start;
   }
 
+  .site-nav {
+    gap: 8px 14px;
+    font-size: 0.9rem;
+  }
+
   h1 {
     font-size: clamp(2.35rem, 11vw, 2.9rem);
   }
 
+  .hero-copy {
+    max-width: 31ch;
+  }
+
   h2 {
-    font-size: clamp(1.65rem, 7.2vw, 2.05rem);
+    font-size: clamp(1.5rem, 6vw, 1.75rem);
     line-height: 1.05;
   }
 
+  .section-heading h2 {
+    max-width: 12em;
+  }
+
   .contact-form {
+    grid-template-columns: 1fr;
+  }
+
+  .copy-link-panel {
     grid-template-columns: 1fr;
   }
 
