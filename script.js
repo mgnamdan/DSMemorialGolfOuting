@@ -8,6 +8,8 @@ const interestFormLink = document.querySelector("#interestFormLink");
 const sponsorContactButton = document.querySelector("#sponsorContactButton");
 const interestSelect = contactForm.querySelector("select[name='interest']");
 const messageField = contactForm.querySelector("textarea[name='message']");
+const paymentOptionSelect = document.querySelector("#paymentOption");
+const paymentPanels = document.querySelectorAll("[data-payment-panel]");
 
 function openFormWindow(event) {
   event.preventDefault();
@@ -19,6 +21,14 @@ function openFormWindow(event) {
 
 document.querySelectorAll(".js-open-window").forEach((link) => {
   link.addEventListener("click", openFormWindow);
+});
+
+paymentOptionSelect.addEventListener("change", () => {
+  paymentPanels.forEach((panel) => {
+    const isSelected = panel.dataset.paymentPanel === paymentOptionSelect.value;
+    panel.hidden = !isSelected;
+    panel.classList.toggle("is-active", isSelected);
+  });
 });
 
 async function copyText(text) {
@@ -39,11 +49,11 @@ async function copyText(text) {
 }
 
 copyInterestLinkButton.addEventListener("click", async () => {
-  const link = interestFormLink.textContent.trim();
+  const link = interestFormLink.href || interestFormLink.textContent.trim();
 
   try {
     await copyText(link);
-    copyStatus.textContent = "Interest form link copied.";
+    copyStatus.textContent = "Registration form link copied.";
   } catch (error) {
     copyStatus.textContent = "Copy failed. You can select and copy the link above.";
   }

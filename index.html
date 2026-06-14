@@ -19,7 +19,7 @@
     <nav class="site-nav" aria-label="Main navigation">
       <a href="#details">Details</a>
       <a href="#sponsor">Sponsor</a>
-      <a href="#interest">Interest Form</a>
+      <a href="#interest">Registration Form</a>
       <a href="#flyer">Flyer</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -34,8 +34,7 @@
           Join family, friends, and supporters for a day of golf, dinner, and remembrance, with proceeds going to Game on Cancer.
         </p>
         <div class="hero-actions" aria-label="Primary actions">
-          <a class="button button-primary js-open-window" href="https://example.com/official-registration-form" target="_blank" rel="noopener" data-placeholder="true">Register now</a>
-          <a class="button button-secondary js-open-window" href="https://docs.google.com/forms/d/e/1FAIpQLSccVm4FfWT28nw3h-6kPOXrn7FxFn-EODT8Z2TMmPt2udVYOaw/viewform" target="_blank" rel="noopener">Join interest list</a>
+          <a class="button button-primary js-open-window" href="https://docs.google.com/forms/d/e/1FAIpQLSccVm4FfWT28nw3h-6kPOXrn7FxFnEODT8Z2TMmPt2udVYOaw/viewform" target="_blank" rel="noopener">Register now</a>
         </div>
         <aside class="event-card" aria-label="Event summary">
           <div>
@@ -70,16 +69,30 @@
             <li><strong>$70</strong> dinner-only option</li>
           </ul>
         </article>
-        <article class="info-panel">
-          <h3>Payment</h3>
-          <ul class="feature-list">
-            <li>Venmo: <a class="text-link" href="https://venmo.com/u/Jeanne-Gugudis" target="_blank" rel="noopener">@Jeanne-Gugudis</a></li>
-            <li>Proceeds go to <a class="text-link" href="https://gameoncancer.com/" target="_blank" rel="noopener">Game on Cancer</a></li>
-          </ul>
-          <div class="qr-placeholder" aria-label="Venmo QR code placeholder">
-            <span>Venmo QR</span>
-            <small>Replace with payment QR code</small>
+        <article class="info-panel payment-panel">
+          <h3>Online Payments</h3>
+          <label class="payment-select-label" for="paymentOption">
+            Payment method
+            <select id="paymentOption" class="payment-select">
+              <option value="venmo">Venmo</option>
+              <option value="square">Square</option>
+            </select>
+          </label>
+          <div class="payment-option is-active" id="venmoPayment" data-payment-panel="venmo">
+            <div class="payment-copy">
+              <span class="event-label">Venmo</span>
+              <a class="text-link payment-link" href="https://venmo.com/u/Jeanne-Gugudis" target="_blank" rel="noopener">@Jeanne-Gugudis</a>
+            </div>
+            <img class="payment-qr" src="assets/venmo-qr-code.png" alt="Venmo QR code for @Jeanne-Gugudis">
           </div>
+          <div class="payment-option" id="squarePayment" data-payment-panel="square" hidden>
+            <div class="payment-copy">
+              <span class="event-label">Square</span>
+              <a class="text-link payment-link" href="https://square.link/u/8KZVh916" target="_blank" rel="noopener">https://square.link/u/8KZVh916</a>
+            </div>
+            <img class="payment-qr" src="assets/square-qr-code.png" alt="Square payment QR code">
+          </div>
+          <p class="payment-note">Proceeds go to <a class="text-link" href="https://gameoncancer.com/" target="_blank" rel="noopener">Game on Cancer</a>.</p>
         </article>
       </div>
     </section>
@@ -110,13 +123,12 @@
 
     <section class="section section-split" id="interest">
       <div class="interest-copy">
-        <p class="eyebrow">Before official signup</p>
-        <h2>Interested in attending or sponsoring?</h2>
+        <h2>Register as a golfer, team, or sponsor.</h2>
         <p>
-          Use the interest form to share contact information before officially signing up. It helps the fundraiser team follow up with details as the outing gets closer.
+          Use the official registration form to sign up for the outing, register a foursome, choose dinner-only attendance, or submit sponsorship details.
         </p>
         <div class="copy-link-panel">
-          <span id="interestFormLink">https://docs.google.com/forms/d/e/1FAIpQLSccVm4FfWT28nw3h-6kPOXrn7FxFn-EODT8Z2TMmPt2udVYOaw/viewform</span>
+          <a class="text-link" id="interestFormLink" href="https://docs.google.com/forms/d/e/1FAIpQLSccVm4FfWT28nw3h-6kPOXrn7FxFnEODT8Z2TMmPt2udVYOaw/viewform" target="_blank" rel="noopener">Official Registration Form</a>
           <button class="button button-secondary" type="button" id="copyInterestLink">Copy link</button>
         </div>
         <div class="interest-actions">
@@ -124,10 +136,10 @@
         </div>
         <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
       </div>
-      <div class="form-frame" aria-label="Interest form preview">
+      <div class="form-frame" aria-label="Official registration form preview">
         <iframe
-          title="Don Skidmore Memorial Golf Outing interest form"
-          src="https://docs.google.com/forms/d/e/1FAIpQLSccVm4FfWT28nw3h-6kPOXrn7FxFn-EODT8Z2TMmPt2udVYOaw/viewform?embedded=true"
+          title="Don Skidmore Memorial Golf Outing official registration form"
+          src="https://docs.google.com/forms/d/e/1FAIpQLSccVm4FfWT28nw3h-6kPOXrn7FxFnEODT8Z2TMmPt2udVYOaw/viewform?embedded=true"
           loading="lazy">
           Loading...
         </iframe>

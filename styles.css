@@ -351,10 +351,10 @@ h3 {
   background: rgba(255, 255, 255, 0.82);
 }
 
-.copy-link-panel span {
+.copy-link-panel span,
+.copy-link-panel a {
   min-width: 0;
   overflow: hidden;
-  color: var(--muted);
   font-size: 0.92rem;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -373,31 +373,65 @@ h3 {
   font-weight: 800;
 }
 
-.qr-placeholder {
-  display: grid;
-  place-items: center;
-  gap: 8px;
-  width: min(100%, 230px);
-  aspect-ratio: 1;
-  border: 2px dashed rgba(16, 43, 13, 0.24);
-  border-radius: 8px;
-  color: var(--muted);
-  background:
-    linear-gradient(90deg, rgba(16, 43, 13, 0.05) 50%, transparent 50%) 0 0 / 22px 22px,
-    linear-gradient(rgba(16, 43, 13, 0.05) 50%, transparent 50%) 0 0 / 22px 22px,
-    rgba(255, 255, 255, 0.72);
-  text-align: center;
+.payment-panel {
+  gap: 20px;
 }
 
-.qr-placeholder span {
+.payment-select-label {
+  display: grid;
+  gap: 8px;
   color: var(--pine);
-  font-size: 1.35rem;
   font-weight: 800;
 }
 
-.qr-placeholder small {
-  max-width: 150px;
-  line-height: 1.35;
+.payment-select {
+  width: min(100%, 320px);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 12px 14px;
+  color: var(--ink);
+  font: inherit;
+  background: var(--white);
+}
+
+.payment-option {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(150px, 220px);
+  gap: 20px;
+  align-items: center;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.payment-option[hidden] {
+  display: none;
+}
+
+.payment-copy {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.payment-link {
+  overflow-wrap: anywhere;
+  font-size: 1.08rem;
+}
+
+.payment-qr {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: 0 12px 28px rgba(16, 43, 13, 0.12);
+}
+
+.payment-note {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
 }
 
 .form-frame {
@@ -601,6 +635,14 @@ h3 {
 
   .copy-link-panel {
     grid-template-columns: 1fr;
+  }
+
+  .payment-option {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-qr {
+    max-width: 260px;
   }
 
   .form-frame,
