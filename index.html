@@ -165,13 +165,18 @@
         <h2>Send the fundraiser team a note.</h2>
       </div>
       <form class="contact-form" id="contactForm">
+        <label class="honeypot-field" aria-hidden="true" tabindex="-1">
+          Website
+          <input type="text" name="website" autocomplete="off" tabindex="-1">
+        </label>
+        <input type="hidden" name="formStartedAt" id="formStartedAt">
         <label>
           Name
           <input type="text" name="name" autocomplete="name" required>
         </label>
         <label>
           Email
-          <input type="email" name="email" autocomplete="email" required>
+          <input type="text" name="email" autocomplete="email" required>
         </label>
         <label>
           Interest

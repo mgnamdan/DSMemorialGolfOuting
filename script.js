@@ -1,4 +1,5 @@
-const FUNDRAISER_EMAIL = "REPLACE_WITH_FUNDRAISER_EMAIL@example.com";
+const FUNDRAISER_EMAIL = "teamkeepfightingthefight@gmail.com";
+const APPS_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbywtzDKeOE_pua5cLUrfOX8qOvuRfV4OKbHs-MkNInyq9NzmxVKvtvGQJONrzBAvDAxjg/exec";
 
 const contactForm = document.querySelector("#contactForm");
 const formStatus = document.querySelector("#formStatus");
@@ -8,8 +9,11 @@ const interestFormLink = document.querySelector("#interestFormLink");
 const sponsorContactButton = document.querySelector("#sponsorContactButton");
 const interestSelect = contactForm.querySelector("select[name='interest']");
 const messageField = contactForm.querySelector("textarea[name='message']");
+const formStartedAtField = document.querySelector("#formStartedAt");
 const paymentOptionSelect = document.querySelector("#paymentOption");
 const paymentPanels = document.querySelectorAll("[data-payment-panel]");
+
+formStartedAtField.value = String(Date.now());
 
 function openFormWindow(event) {
   event.preventDefault();
@@ -69,47 +73,94 @@ sponsorContactButton.addEventListener("click", () => {
   }, 450);
 });
 
-function buildMailtoUrl(formData) {
-  const name = formData.get("name").trim();
-  const email = formData.get("email").trim();
-  const interest = formData.get("interest");
-  const message = formData.get("message").trim();
-  const isSponsorship = interest === "Sponsorship";
+function getContactPayload(formData) {
+  return {
+    name: formData.get("name").trim(),
+    email: formData.get("email").trim(),
+    interest: formData.get("interest"),
+    message: formData.get("message").trim(),
+    website: formData.get("website").trim(),
+    formStartedAt: formData.get("formStartedAt"),
+    pageUrl: window.location.href,
+    submittedAt: new Date().toISOString(),
+    userAgent: navigator.userAgent
+  };
+}
 
-  const subject = `${isSponsorship ? "URGENT: " : ""}Don Skidmore Memorial Golf Outing inquiry - ${interest}`;
+function buildMailtoUrl(payload) {
+  const { name, email, interest, message } = payload;
+
+  const subject = `URGENT: Don Skidmore Memorial Golf Outing inquiry - ${interest}`;
   const body = [
+    "A visitor submitted the website contact form.",
+    "",
     `Name: ${name}`,
-    `Email: ${email}`,
+    `Contact email entered by visitor: ${email}`,
     `Interest: ${interest}`,
     "",
-    message
+    "Message:",
+    message,
+    "",
+    `Submitted at: ${payload.submittedAt}`,
+    `Page: ${payload.pageUrl}`
   ].join("\n");
   const params = new URLSearchParams({
     subject,
     body
   });
 
-  if (isSponsorship) {
-    params.set("importance", "high");
-    params.set("x-priority", "1");
-    params.set("priority", "urgent");
-  }
+  params.set("importance", "high");
+  params.set("x-priority", "1");
+  params.set("priority", "urgent");
 
   return `mailto:${FUNDRAISER_EMAIL}?${params.toString()}`;
 }
 
-contactForm.addEventListener("submit", (event) => {
+async function sendContactPayload(payload) {
+  const endpointIsConfigured = !APPS_SCRIPT_WEB_APP_URL.includes("REPLACE_WITH");
+
+  if (!endpointIsConfigured) {
+    return false;
+  }
+
+  await fetch(APPS_SCRIPT_WEB_APP_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify(payload)
+  });
+
+  return true;
+}
+
+contactForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   const formData = new FormData(contactForm);
-  const emailIsConfigured = !FUNDRAISER_EMAIL.includes("REPLACE_WITH");
+  const payload = getContactPayload(formData);
+  const submitButton = contactForm.querySelector("button[type='submit']");
 
-  if (!emailIsConfigured) {
-    formStatus.textContent = "The contact form is ready. Add the fundraiser email address in script.js before publishing.";
-    return;
+  submitButton.disabled = true;
+  formStatus.textContent = "Sending your message...";
+
+  try {
+    const sentThroughAppsScript = await sendContactPayload(payload);
+
+    if (sentThroughAppsScript) {
+      formStatus.textContent = "Message sent to the fundraiser team.";
+      contactForm.reset();
+      return;
+    }
+
+    window.location.href = buildMailtoUrl(payload);
+    formStatus.textContent = "Opening your email app with the message prepared. Add the Apps Script URL in script.js to send automatically.";
+    contactForm.reset();
+  } catch (error) {
+    window.location.href = buildMailtoUrl(payload);
+    formStatus.textContent = "Automatic sending was unavailable, so your email app is opening with the message prepared.";
+  } finally {
+    submitButton.disabled = false;
   }
-
-  window.location.href = buildMailtoUrl(formData);
-  formStatus.textContent = "Opening your email app with the message prepared.";
-  contactForm.reset();
 });
