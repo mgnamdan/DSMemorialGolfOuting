@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20260615-contact-fix">
 </head>
 <body>
   <header class="site-header">
@@ -165,10 +165,7 @@
         <h2>Send the fundraiser team a note.</h2>
       </div>
       <form class="contact-form" id="contactForm">
-        <label class="honeypot-field" aria-hidden="true" tabindex="-1">
-          Website
-          <input type="text" name="website" autocomplete="off" tabindex="-1">
-        </label>
+        <input class="honeypot-field" type="text" name="website" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;">
         <input type="hidden" name="formStartedAt" id="formStartedAt">
         <label>
           Name
@@ -203,6 +200,6 @@
     <p>August 31 at TPC Michigan. Proceeds go to Game on Cancer.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=20260615-contact-fix"></script>
 </body>
 </html>
