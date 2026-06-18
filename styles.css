@@ -478,6 +478,10 @@ h3 {
   font-size: 1.08rem;
 }
 
+.flyer-page-link {
+  width: fit-content;
+}
+
 .flyer-download {
   display: grid;
   place-items: center;
@@ -577,6 +581,58 @@ h3 {
   margin: 0;
 }
 
+.flyer-page {
+  min-height: 100vh;
+  background: var(--pine);
+}
+
+.flyer-page::before {
+  background:
+    radial-gradient(circle at 12% 10%, rgba(255, 255, 255, 0.11) 0 88px, transparent 90px),
+    radial-gradient(circle at 86% 18%, rgba(255, 255, 255, 0.1) 0 112px, transparent 114px),
+    var(--pine);
+}
+
+.standalone-flyer {
+  display: grid;
+  gap: clamp(24px, 4vw, 42px);
+  min-height: 100vh;
+  padding: clamp(18px, 4vw, 48px);
+}
+
+.flyer-page-toolbar {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  width: min(100%, 960px);
+  margin: 0 auto;
+}
+
+.flyer-page-toolbar .eyebrow,
+.flyer-page-toolbar h1 {
+  color: var(--white);
+}
+
+.flyer-page-toolbar h1 {
+  max-width: 680px;
+  font-size: clamp(2rem, 5vw, 4.6rem);
+}
+
+.standalone-flyer-image {
+  display: block;
+  width: min(100%, 960px);
+  margin: 0 auto;
+}
+
+.standalone-flyer-image img {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+}
+
 @media (max-width: 900px) {
   .site-header {
     align-items: flex-start;
@@ -659,5 +715,10 @@ h3 {
   .form-frame iframe {
     min-height: 560px;
     height: 560px;
+  }
+
+  .flyer-page-toolbar {
+    align-items: start;
+    flex-direction: column;
   }
 }
